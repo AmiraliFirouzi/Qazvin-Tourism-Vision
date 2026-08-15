@@ -1,3 +1,6 @@
+[![Field](https://img.shields.io/badge/Field-Data%20Science-orange.svg)](#)
+[![Field](https://img.shields.io/badge/Field-Computer%20Vision-green.svg)](#)
+
 # Qazvin Tourism Vision
 
 <p align="center">
