@@ -1,0 +1,14 @@
+Package: QazvinTourismVision
+Title: Qazvin Tourism Vision Shiny Application
+Version: 1.0.0
+Authors@R: person("YOUR", "NAME", email = "YOUR_EMAIL@example.com", role = c("aut", "cre"))
+Description: Interactive R Shiny application for Qazvin tourist landmark image classification using TensorFlow/Keras models.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports:
+    shiny,
+    keras,
+    tensorflow,
+    jpeg,
+    png,
+    jsonlite

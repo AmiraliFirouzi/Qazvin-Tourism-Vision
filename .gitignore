@@ -1,0 +1,32 @@
+# R
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# renv
+renv/library/
+renv/staging/
+renv/cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs / temporary files
+*.log
+*.tmp
+
+# Deployment secrets
+rsconnect/
+.env
+.env.*
+
+# Generated screenshots / local exports
+screenshots/*.jpg
+screenshots/*.jpeg
+screenshots/*.png
