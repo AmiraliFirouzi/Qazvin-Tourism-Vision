@@ -218,12 +218,12 @@ For a research-oriented version, these components should be documented and versi
 
 ## Author
 
-**Project Author**
+**Amirali Firouzi**
 
 Computer Vision • Machine Learning • R Shiny
 
-- GitHub: `https://github.com/YOUR_USERNAME`
-- LinkedIn: `YOUR_LINKEDIN_URL`
+- GitHub: `https://github.com/AmiraliFirouzi`
+- LinkedIn: `www.linkedin.com/in/amirali-firouzi-2b714335a`
 
 ---
 
