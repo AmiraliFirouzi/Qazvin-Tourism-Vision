@@ -1,8 +1,0 @@
-# R package requirements for Qazvin Tourism Vision
-# Tested/expected packages used by app.R:
-shiny
-keras
-tensorflow
-jpeg
-png
-jsonlite
