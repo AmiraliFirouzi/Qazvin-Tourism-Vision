@@ -30,11 +30,10 @@ if (!file.exists(model_general_path) || !file.exists(model_specific_path)) {
   )
 }
 
-# --------------- بارگذاری هر دو مدل هوش مصنوعی ---------------
+
 model_general <- load_model_hdf5(file.path("models", "keras_model.h5"))
 model_specific <- load_model_hdf5(file.path("models", "keras_model_2.h5"))
 
-# برچسب‌ها
 labels_general <- c("Historical", "Natural")
 
 labels_specific <- c(
@@ -58,7 +57,6 @@ labels_specific <- c(
   "Yeleh_Gonbad_Hot_Spring"  # 17
 )
 
-# تابع پیش‌پردازش تصویر (دقیقاً مشابه Teachable Machine)
 preprocess_tm_image <- function(image_path) {
   img <- image_load(image_path, target_size = c(224, 224))
   img_array <- image_to_array(img)
@@ -67,13 +65,11 @@ preprocess_tm_image <- function(image_path) {
   return(img_array)
 }
 
-# --------------- رابط کاربری (UI) ---------------
 ui <- fluidPage(
   tags$head(
     tags$style(HTML("
       @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v3.3.0/Vazirmatn-font-face.css');
       
-      /* تنظیمات کلی برای جلوگیری از اسکرول افقی و خالی شدن صفحه */
       html, body {
         overflow-x: hidden !important;
         width: 100% !important;
@@ -86,7 +82,6 @@ ui <- fluidPage(
         min-height: 100vh;
       }
       
-      /* این کانتینر اصلی استایل شیشه‌ای و راست‌چین را نگه می‌دارد بدون اینکه صفحه را خراب کند */
       .container-fluid {
         direction: rtl !important;
         text-align: right !important;
@@ -98,7 +93,6 @@ ui <- fluidPage(
         box-sizing: border-box;
       }
       
-      /* اصلاح ساختار گرید با Flexbox برای جلوگیری از به‌هم ریختن */
       .row {
         display: flex !important;
         flex-wrap: wrap !important;
@@ -113,7 +107,6 @@ ui <- fluidPage(
         box-sizing: border-box !important;
       }
       
-      /* استایل هدر شیشه‌ای */
       .navbar-custom {
         background: rgba(255, 255, 255, 0.08);
         backdrop-filter: blur(12px);
@@ -131,7 +124,6 @@ ui <- fluidPage(
       .navbar-custom h2 { text-shadow: 0 2px 5px rgba(0,0,0,0.3); letter-spacing: 1px; margin: 0;}
       .navbar-custom p { opacity: 0.8; margin-top: 10px; }
       
-      /* کارت‌های شیشه‌ای */
       .glass-card {
         background: rgba(255, 255, 255, 0.08);
         backdrop-filter: blur(10px);
@@ -154,7 +146,6 @@ ui <- fluidPage(
         box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
       }
       
-      /* استایل آپلود */
       .upload-container {
         border: 2px dashed rgba(255,255,255,0.3);
         border-radius: 12px;
@@ -177,7 +168,6 @@ ui <- fluidPage(
         background: rgba(255,255,255,0.3) !important;
       }
       
-      /* لودینگ */
       .loader {
         border: 4px solid rgba(255,255,255,0.2);
         border-top: 4px solid #ffffff;
@@ -189,7 +179,6 @@ ui <- fluidPage(
       }
       @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
       
-      /* باکس‌های نتیجه */
       .result-box {
         margin-top: 15px;
         padding: 20px;
@@ -240,10 +229,8 @@ ui <- fluidPage(
       p(style="font-size: 16px;", "تشخیص خودکار اماکن تاریخی / طبیعی و تعیین مکان دقیق")
   ),
   
-  # محتوای اصلی
   div(class = "container-fluid",
       fluidRow(
-        # ستون سمت راست : آپلود
         column(width = 5,
                div(class = "glass-card",
                    h3("بارگذاری تصویر", style="margin-bottom: 20px; font-weight: bold;"),
@@ -261,7 +248,6 @@ ui <- fluidPage(
                )
         ),
         
-        # ستون سمت چپ : خروجی
         column(width = 7,
                div(class = "glass-card", style="justify-content: center;",
                    uiOutput("main_display")
@@ -271,13 +257,11 @@ ui <- fluidPage(
   )
 )
 
-# --------------- منطق سرور (Server) ---------------
 server <- function(input, output, session) {
   
   app_state <- reactiveVal("waiting")
   prediction_data <- reactiveVal(NULL)
   
-  # تست اولیه مدل‌ها
   observe({
     tryCatch({
       # Only verify that the model objects can be accessed at startup.
@@ -296,19 +280,16 @@ server <- function(input, output, session) {
     tryCatch({
       input_data <- preprocess_tm_image(img_path)
       
-      # پیش‌بینی با مدل اول (عمومی)
       pred_general <- model_general %>% predict(input_data)
       idx_general <- which.max(pred_general)
       label_general <- labels_general[idx_general]
       conf_general <- as.numeric(pred_general[1, idx_general]) * 100
       
-      # پیش‌بینی با مدل دوم (مکان)
       pred_specific <- model_specific %>% predict(input_data)
       idx_specific <- which.max(pred_specific)
       label_specific <- labels_specific[idx_specific]
       conf_specific <- as.numeric(pred_specific[1, idx_specific]) * 100
       
-      # کدگذاری تصویر برای نمایش
       raw_img <- readBin(img_path, "raw", file.info(img_path)$size)
       ext <- tools::file_ext(img_path)
       mime <- ifelse(tolower(ext) == "png", "image/png", "image/jpeg")
@@ -357,7 +338,6 @@ server <- function(input, output, session) {
     if (state == "done") {
       res <- prediction_data()
       
-      # استایل باکس عمومی
       if (res$general_label == "Historical") {
         box_class_g <- "res-historical"
         title_g <- "🏛️ مکان تاریخی (Historical)"
@@ -368,17 +348,14 @@ server <- function(input, output, session) {
         bar_color_g <- "#2ecc71"
       }
       
-      # باکس مکان دقیق
       box_class_s <- "res-place"
       title_s <- paste0("📍 ", res$specific_label)
       bar_color_s <- "#3498db"
       
-      # نمایش هر دو نتیجه به صورت دو ستونی (در موبایل یک ستون)
       div(style="text-align: center; max-width: 100%;",
           tags$img(src = res$img_b64, class = "final-img"),
           
           div(class = "result-grid",
-              # نتیجه مدل اول
               div(class = paste("result-box", box_class_g),
                   h3(style="margin-top: 0; font-weight: bold; font-size: 20px;", title_g),
                   h4(style="opacity: 0.9; margin-top: 5px;", sprintf("اطمینان: %.1f%%", res$general_conf)),
@@ -386,7 +363,6 @@ server <- function(input, output, session) {
                       div(class = "conf-bar-fill", style = sprintf("width: %s%%; background-color: %s;", res$general_conf, bar_color_g))
                   )
               ),
-              # نتیجه مدل دوم
               div(class = paste("result-box", box_class_s),
                   h3(style="margin-top: 0; font-weight: bold; font-size: 20px;", title_s),
                   h4(style="opacity: 0.9; margin-top: 5px;", sprintf("اطمینان: %.1f%%", res$specific_conf)),
