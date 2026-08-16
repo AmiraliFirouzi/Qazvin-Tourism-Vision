@@ -205,8 +205,8 @@ screenshots/
 Then embed them in this README:
 
 ```markdown
-![Dashboard](screenshots/1.png)
-![Prediction](screenshots/2.png)
+![Dashboard](https://github.com/AmiraliFirouzi/Qazvin-Tourism-Vision/blob/main/screenshots/1.png)
+![Prediction](https://github.com/AmiraliFirouzi/Qazvin-Tourism-Vision/blob/main/screenshots/1.png)
 ```
 
 ## Project Scope
