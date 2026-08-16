@@ -1,5 +1,6 @@
 [![Field](https://img.shields.io/badge/Field-Data%20Science-orange.svg)](#)
 [![Field](https://img.shields.io/badge/Field-Computer%20Vision-green.svg)](#)
+[![Framework](https://img.shields.io/badge/Framework-R%20Shiny-blue.svg)](#)
 
 # Qazvin Tourism Vision
 
@@ -8,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="YOUR_LIVE_DEMO_URL">🚀 Live Demo</a>
+  <a href="https://amirali-firouzi.shinyapps.io/Qazvin-Tourism-Vision/">🚀 Live Demo</a>
   &nbsp;•&nbsp;
   <a href="#overview">Overview</a>
   &nbsp;•&nbsp;
@@ -36,9 +37,8 @@ The final result is presented through a Persian, right-to-left, responsive Shiny
 
 ### 🚀 Live Demo
 
-**[Open the live application](YOUR_LIVE_DEMO_URL)**
+**[Open the live application](https://amirali-firouzi.shinyapps.io/Qazvin-Tourism-Vision/)**
 
-> Replace `YOUR_LIVE_DEMO_URL` after deployment.
 
 ## Key Features
 
@@ -145,7 +145,7 @@ Qazvin-Tourism-Vision/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Qazvin-Tourism-Vision.git
+git clone https://github.com/AmiraliFirouzi/Qazvin-Tourism-Vision.git
 cd Qazvin-Tourism-Vision
 ```
 
@@ -192,22 +192,11 @@ The deployment environment must provide compatible R, Keras and TensorFlow depen
 
 ## Screenshots
 
-Add screenshots of the final dashboard to the `screenshots/` directory and update this section.
-
-Example:
-
-```text
-screenshots/
-├── 1.png
-└── 2.png
-```
-
-Then embed them in this README:
-
-```markdown
-![Dashboard](./screenshots/1.png)
-![Prediction](./screenshots/1.png)
-```
+<p align="center">
+  <img src="screenshots/1.png" alt="Dashboard Overview" width="48%">
+  &nbsp;
+  <img src="screenshots/2.png" alt="Prediction View" width="48%">
+</p>
 
 ## Project Scope
 
@@ -225,7 +214,7 @@ For a research-oriented version, these components should be documented and versi
 
 Computer Vision • Machine Learning • R Shiny
 
-- GitHub: `https://github.com/AmiraliFirouzi`
+- GitHub: `@AmiraliFirouzi`
 - LinkedIn: `www.linkedin.com/in/amirali-firouzi-2b714335a`
 
 ---
