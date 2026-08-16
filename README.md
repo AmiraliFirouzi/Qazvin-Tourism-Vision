@@ -198,8 +198,8 @@ Example:
 
 ```text
 screenshots/
-├── dashboard.png
-└── prediction.png
+├── 1.png
+└── 2.png
 ```
 
 Then embed them in this README:
