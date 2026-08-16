@@ -205,8 +205,8 @@ screenshots/
 Then embed them in this README:
 
 ```markdown
-![Dashboard](screenshots/dashboard.png)
-![Prediction](screenshots/prediction.png)
+![Dashboard](screenshots/1.png)
+![Prediction](screenshots/2.png)
 ```
 
 ## Project Scope
